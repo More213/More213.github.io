@@ -1,0 +1,31 @@
+<div class="table-adaptivity">
+<table>
+
+      <tr>
+        <th>Owner</th>
+        <th>End date</th>
+        <th>Profits</th>
+        <th>Losses</th>
+        <th>Phone</th>
+      </tr>
+
+      <tr *ngFor="let owner of owners">
+        <td>
+          {{owner.firstName}}  {{owner.lastName}}
+        </td>
+        <td>
+          {{owner.endDate}}
+        </td>
+        <td>
+          &#x24;{{owner.profits}}
+        </td>
+        <td>
+          &#36;{{owner.losses}}
+        </td>
+        <td>
+          {{owner.phone}}
+        </td>
+      </tr>
+
+</table>
+</div>

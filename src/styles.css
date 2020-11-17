@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+app-overview,
+app-abtest,
+app-cloud,
+app-colors,
+app-experiments,
+app-ownership,
+app-security,
+app-sketch{
+  width: 100%;
+}
+
+@font-face{
+  font-family: 'Lato-Bold';
+  src: url('Fonts/Lato/Lato-Bold.ttf') format("truetype");
+  /*src: url('Fonts/Lato/Lato-Bolditalic.ttf') format('truetype');*/
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'Lato-Black';
+  src: url('Fonts/Lato/Lato-Black.ttf') format("truetype");
+  /*src: url('Fonts/Lato/Lato-Blackitalic.ttf') format('truetype');*/
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'Lato-Light';
+  src: url('Fonts/Lato/Lato-Light.ttf') format("truetype");
+  /*src: url('Fonts/Lato/Lato-Lightitalic.ttf') format('truetype');*/
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+}
+app-root {
+  min-height: 100%;
+}
+
+html, body {
+  height: 100%;
+  font-family: Lato-Light;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
