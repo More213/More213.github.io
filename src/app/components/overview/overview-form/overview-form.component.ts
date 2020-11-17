@@ -27,7 +27,7 @@ export class OverviewFormComponent implements OnInit {
   }
 
   changeFormatPhone(telephone: string): string {
-    const tel = telephone.replace(/[()-]/g, '')
+    const tel = telephone.replace(/[()-]/g, '');
     const newPhoneFormat = `${tel.slice(0, 1)}(${tel.slice(1, 4)})${tel.slice(4, 7)}-${tel.slice(7, 9)}-${tel.slice(9, 11)}`;
     return newPhoneFormat;
   }
