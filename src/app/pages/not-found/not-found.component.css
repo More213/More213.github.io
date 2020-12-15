@@ -1,0 +1,15 @@
+app-menu-bar {
+  min-width: 200px;
+  width: 20%;
+  max-width: 450px;
+  min-height: 100%;
+  background: linear-gradient(175.93deg, #5F00D8 -10.23%, #B200F1 117.03%);
+}
+.body-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100%;
+}

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemMenu } from '../../interfaces/item-menu';
+import { ItemMenu } from '../../models/interfaces/item-menu';
 
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
-  styleUrls: ['./menu-bar.component.css']
+  styleUrls: ['./menu-bar.component.scss']
 })
 export class MenuBarComponent implements OnInit {
 
@@ -16,7 +16,7 @@ export class MenuBarComponent implements OnInit {
     { nameItem: 'Sketch', urlImg: 'Sketch', URL: 'Sketch'},
     { nameItem: 'Experiments', urlImg: 'Experiments', URL: 'Experiments'},
     { nameItem: 'Security', urlImg: 'Security', URL: 'Security'},
-    { nameItem: 'Ownership',  urlImg: 'Owenership', URL: 'Owenership'},
+    { nameItem: 'Ownership',  urlImg: 'Owenership', URL: 'Ownership'},
     { nameItem: 'A/B Test', urlImg: 'ABTest', URL: 'ABTest'},
     { nameItem: 'Colors', urlImg: 'Colors', URL: 'Colors'},
   ];

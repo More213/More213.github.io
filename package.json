@@ -25,9 +25,12 @@
     "@ngrx/router-store": "^10.0.1",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^10.0.0",
+    "@types/angular-material": "^1.1.72",
     "bootstrap": "^4.5.3",
+    "bootstrap-scss": "^4.5.3",
     "moment": "^2.29.1",
     "rxjs": "~6.6.0",
+    "sass": "^1.27.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

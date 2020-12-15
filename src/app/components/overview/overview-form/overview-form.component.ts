@@ -1,19 +1,19 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Owner} from '../../../interfaces/owner';
+import {Owner} from '../../../models/interfaces/owner';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import * as moment from 'moment';
 @Component({
   selector: 'app-overview-form',
   templateUrl: './overview-form.component.html',
-  styleUrls: ['./overview-form.component.css']
+  styleUrls: ['./overview-form.component.scss']
 })
 export class OverviewFormComponent implements OnInit {
   profileForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     endDate: new FormControl('', [Validators.required]),
-    profits: new FormControl('', [Validators.required, Validators.pattern('^[+]?[0-9]*[.,]?[0-9]+(?:[eE][-+]?[0-9]+)?$')]),
-    losses: new FormControl('', [Validators.required, Validators.pattern('^[+]?[0-9]*[.,]?[0-9]+(?:[eE][-+]?[0-9]+)?$')]),
+    profits: new FormControl('', [Validators.required, Validators.pattern('[+]?[0-9]*[.,]?[0-9]+')]),
+    losses: new FormControl('', [Validators.required, Validators.pattern('[+]?[0-9]*[.,]?[0-9]+')]),
     phone: new FormControl('', [Validators.required, Validators.pattern('^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$')]),
     id: new FormControl(1)
   });
