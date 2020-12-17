@@ -1,67 +1,76 @@
-<form [formGroup]="profileForm">
-  <div class="form-row">
-    <div class="form-group col">
-      <label class="" for="owner-firstName">First Name</label>
+<form [formGroup]="profileForm" class="example-form">
+  <div class="row">
+    <mat-form-field class="example-full-width">
+      <mat-label class="" for="owner-firstName">First Name</mat-label>
       <input
+        matInput
         type="text"
         class="form-control"
         id="owner-firstName"
         formControlName="firstName"
         placeholder="First Name"
         />
-    </div>
-    <div class="form-group col">
-      <label for="owner-lastName">Last Name</label>
+    </mat-form-field >
+    <mat-form-field class="example-full-width">
+      <mat-label for="owner-lastName">Last Name</mat-label>
       <input
+        matInput
         type="text"
         class="form-control"
         id="owner-lastName"
         formControlName="lastName"
         placeholder="Last Name"
         />
-    </div>
-    <div class="form-group col">
-      <label for="owner-endDate">End date</label>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label for="owner-endDate">End date</mat-label>
       <input
+        matInput
         type="date"
         class="form-control"
         id="owner-endDate"
         formControlName="endDate"
         placeholder="End date"
         />
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col">
-      <label for="owner-profits">Profits</label>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label for="owner-profits">Profits</mat-label>
       <input
+        matInput
         type="text"
         class="form-control"
         id="owner-profits"
         formControlName="profits"
         placeholder="Profits"
         />
-    </div>
-    <div class="form-group col">
-      <label for="owner-losses">Losses</label>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label for="owner-losses">Losses</mat-label>
       <input
+        matInput
         type="text"
         class="form-control"
         id="owner-losses"
         formControlName="losses"
         placeholder="Losses"
         />
-    </div>
-    <div class="form-group col">
-      <label for="owner-phone">Phone</label>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label for="owner-phone">Phone</mat-label>
       <input
+        matInput
         type="tel"
         class="form-control"
         id="owner-phone"
         formControlName="phone"
         placeholder="8(000)000-00-00"
         />
-    </div>
+    </mat-form-field>
   </div>
-  <a href="#"><button type="button" class="btn btn-success " [disabled]="profileForm.invalid" (click)="onAdd()">Add</button></a>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="onNoClick()">No Thanks</button>
+    <button mat-raised-button type="button" class="btn btn-success " [disabled]="profileForm.invalid" (click)="onAdd()">Add</button>
+  </div>
 </form>

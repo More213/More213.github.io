@@ -32,6 +32,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/customTheme.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

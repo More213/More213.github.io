@@ -27,10 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalFormComponent } from './components/overview/modal-form/modal-form.component';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import {MaterialAppModule} from "./ngmaterial.module";
-import {MatButtonModule} from "@angular/material/button";
-import {OverlayContainer} from "@angular/cdk/overlay";
-// import {PhoneMaskDirective} from './utills/MaskUtill';
+import {MaterialAppModule} from './ngmaterial.module';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -51,7 +49,6 @@ import {OverlayContainer} from "@angular/cdk/overlay";
     ModalFormComponent,
     UnderConstructionComponent,
     NotFoundComponent,
-    // PhoneMaskDirective
   ],
   imports: [
     BrowserModule,
@@ -64,9 +61,10 @@ import {OverlayContainer} from "@angular/cdk/overlay";
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
     MaterialAppModule,
-    MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

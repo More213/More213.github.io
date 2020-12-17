@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Owner} from '../../../models/interfaces/owner';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import * as moment from 'moment';
+import {MatDialogRef} from "@angular/material/dialog";
 @Component({
   selector: 'app-overview-form',
   templateUrl: './overview-form.component.html',
@@ -20,17 +21,16 @@ export class OverviewFormComponent implements OnInit {
 
   @Output() addNewOwner = new EventEmitter<Owner>();
 
-  constructor() {
-  }
+  constructor(public dialogRef: MatDialogRef<OverviewFormComponent>) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeFormatPhone(telephone: string): string {
     const tel = telephone.replace(/[()-]/g, '');
     const newPhoneFormat = `${tel.slice(0, 1)}(${tel.slice(1, 4)})${tel.slice(4, 7)}-${tel.slice(7, 9)}-${tel.slice(9, 11)}`;
     return newPhoneFormat;
   }
+
   public onAdd(): void {
     this.profileForm.value.id = ++this.profileForm.value.id;
     this.profileForm.value.endDate = moment(this.profileForm.value.endDate).format('DD/MM/YY');
@@ -45,5 +45,10 @@ export class OverviewFormComponent implements OnInit {
       );
     this.addNewOwner.emit(owner);
     this.profileForm.reset();
+    this.onNoClick();
     }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

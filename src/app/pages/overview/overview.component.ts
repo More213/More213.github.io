@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Owner} from '../../models/interfaces/owner';
 import {ownersArray} from '../../components/overview/overview-table/overview-table.component';
+import {MatDialog} from "@angular/material/dialog";
+import {ModalFormComponent} from "../../components/overview/modal-form/modal-form.component";
+import {OverviewFormComponent} from "../../components/overview/overview-form/overview-form.component";
 
 @Component({
   selector: 'app-overview',
@@ -9,15 +12,23 @@ import {ownersArray} from '../../components/overview/overview-table/overview-tab
 })
 export class OverviewComponent implements OnInit{
   public owners: Owner[] = ownersArray;
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
   }
 
-  onAdd(owner: Owner): void {
-    this.owners.push(owner);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(OverviewFormComponent, {
+      width: '800px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
-  openPopup(): void {
-
+  onAdd(owner: Owner): void {
+    this.owners.push(owner);
   }
 }
