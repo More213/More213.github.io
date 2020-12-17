@@ -19,7 +19,7 @@ export class OverviewComponent implements OnInit{
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(OverviewFormComponent, {
+    const dialogRef = this.dialog.open(ModalFormComponent, {
       width: '800px',
     });
 

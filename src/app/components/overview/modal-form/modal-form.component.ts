@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Owner} from '../../../models/interfaces/owner';
 import {ownersArray} from '../overview-table/overview-table.component';
-// import {MatDialog} from "@angular/material/dialog";
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-form',
@@ -10,12 +10,15 @@ import {ownersArray} from '../overview-table/overview-table.component';
 })
 export class ModalFormComponent implements OnInit {
   public owners: Owner[] = ownersArray;
-  constructor() {}
+  constructor(public dialogRef: MatDialogRef<ModalFormComponent>) {}
 
   ngOnInit(): void {
   }
 
   onAdd(owner: Owner): void {
     this.owners.push(owner);
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }
