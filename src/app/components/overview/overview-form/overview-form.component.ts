@@ -2,7 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Owner} from '../../../models/interfaces/owner';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import * as moment from 'moment';
-import {MatDialogRef} from "@angular/material/dialog";
+import { MatDialogRef } from '@angular/material/dialog';
+import { ownersArray } from '../overview-table/overview-table.component';
 @Component({
   selector: 'app-overview-form',
   templateUrl: './overview-form.component.html',
@@ -20,6 +21,8 @@ export class OverviewFormComponent implements OnInit {
   });
 
   @Output() addNewOwner = new EventEmitter<Owner>();
+  public owners: Owner[] = ownersArray;
+
 
   constructor(public dialogRef: MatDialogRef<OverviewFormComponent>) {}
 
@@ -44,11 +47,16 @@ export class OverviewFormComponent implements OnInit {
       this.profileForm.value.id,
       );
     this.addNewOwner.emit(owner);
+    this.onAddNew(owner);
     this.profileForm.reset();
     this.onNoClick();
     }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onAddNew(owner: Owner): void {
+    this.owners.push(owner);
   }
 }
