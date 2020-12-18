@@ -58,7 +58,7 @@
         <mat-label for="owner-profits">Profits*</mat-label>
         <input
           matInput
-          type="number"
+          type="text"
           mask="separator"
           class="form-control"
           id="owner-profits"
@@ -76,7 +76,7 @@
         <mat-label for="owner-losses">Losses*</mat-label>
         <input
           matInput
-          type='number'
+          type='text'
           mask="separator"
           class="form-control"
           id="owner-losses"
@@ -100,7 +100,7 @@
           formControlName="phone"
           #input
           prefix="+7"
-          mask="0(000)000-00-00"
+          mask="(000)000-00-00"
           placeholder="+7(000)000-00-00">
         <mat-hint align="end">{{input.value.toString()?.length || 0}}/16</mat-hint>
       </mat-form-field>
