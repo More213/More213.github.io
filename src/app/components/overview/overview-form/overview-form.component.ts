@@ -11,21 +11,28 @@ import { ownersArray } from '../overview-table/overview-table.component';
   styleUrls: ['./overview-form.component.scss']
 })
 export class OverviewFormComponent implements OnInit {
-  public warnText = '';
-  profileForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    endDate: new FormControl('', [Validators.required]),
-    profits: new FormControl('', [Validators.required, Validators.pattern('[+]?[0-9]*[.,]?[0-9]+')]),
-    losses: new FormControl('', [Validators.required, Validators.pattern('[+]?[0-9]*[.,]?[0-9]+')]),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$')]),
-    id: new FormControl(1)
-  });
-
   @Output() addNewOwner = new EventEmitter<Owner>();
   public owners: Owner[] = ownersArray;
-  regex = RegExp('[+]?[0-9]*[.,]?[0-9]+');
-
+  regexNumber = RegExp('[+]?[0-9]*[.,]?[0-9]+');
+  regexTel = RegExp('^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$');
+  public warnText = {
+    firstName: '',
+    lastName: '',
+    endDate: '',
+    profits: '',
+    losses: '',
+    phone: '',
+  };
+  formValid = false;
+  profileForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    endDate: new FormControl(''),
+    profits: new FormControl(null),
+    losses: new FormControl(null),
+    phone: new FormControl(null),
+    id: new FormControl(1)
+  });
 
   constructor(public dialogRef: MatDialogRef<OverviewFormComponent>) {}
 
@@ -39,57 +46,98 @@ export class OverviewFormComponent implements OnInit {
 
   checkProfits(): void {
     if (!this.profileForm.value.profits) {
-      this.warnText = 'please enter profits';
-    } else if (this.regex.test(this.profileForm.value.profits)) {
-      this.warnText = 'please enter a positive profits';
+      this.warnText.profits = 'please enter profits';
+      this.formValid = false;
+    } else if (this.profileForm.value.profits < 0) {
+      this.warnText.profits = 'please enter a positive profits';
+      this.formValid = false;
+    } else {
+      this.warnText.profits = '';
+      this.formValid = true;
     }
   }
 
   checkLosses(): void {
     if (!this.profileForm.value.losses) {
-      this.warnText = 'please enter losses';
-    } else if (this.regex.test(this.profileForm.value.losses)) {
-      this.warnText = 'please enter a positive losses';
+      this.warnText.losses = 'please enter losses';
+      this.formValid = false;
+    } else if (this.profileForm.value.losses < 0) {
+      this.warnText.losses = 'please enter a positive losses';
+      this.formValid = false;
+    } else {
+      this.warnText.losses = '';
+      this.formValid = true;
+    }
+  }
+
+  checkPhone(): void {
+    if (!this.profileForm.value.phone) {
+      this.warnText.phone = 'please enter phone';
+      this.formValid = false;
+    } else if (`${this.profileForm.value.phone}`.length < 9) {
+      this.warnText.phone = 'please enter a phone';
+      this.formValid = false;
+    } else {
+      this.warnText.phone = '';
+      this.formValid = true;
+    }
+  }
+
+  checkFirstName(): void {
+    if (!this.profileForm.value.firstName) {
+      this.warnText.firstName = 'please enter name';
+      this.formValid = false;
+    } else {
+      this.warnText.firstName = '';
+      this.formValid = true;
+    }
+  }
+  checkLastName(): void {
+    if (!this.profileForm.value.lastName) {
+      this.warnText.lastName = 'please enter your last name';
+      this.formValid = false;
+    } else {
+      this.warnText.lastName = '';
+      this.formValid = true;
+    }
+  }
+
+  checkEndDate(): void {
+    if (!this.profileForm.value.endDate) {
+      this.warnText.endDate = 'please enter date';
+      this.formValid = false;
+    } else {
+      this.warnText.endDate = '';
+      this.formValid = true;
     }
   }
 
   validationForm(): void {
-    if (!this.profileForm.value.firstName) {
-      this.warnText = 'please enter name';
-    } else if (!this.profileForm.value.lastName) {
-      this.warnText = 'please enter your last name';
-    } else if (!this.profileForm.value.endDate) {
-      this.warnText = 'please enter date';
-    }
+    this.checkFirstName();
+    this.checkLastName();
+    this.checkEndDate();
     this.checkProfits();
     this.checkLosses();
-    // } else if (!this.profileForm.value.profits) {
-    //   this.warnText = 'please enter your last name';
-    // } else if (!this.profileForm.value.losses) {
-    //   this.warnText = 'please enter your last name';
-    // } else if (!this.profileForm.value.phone) {
-    //   this.warnText = 'please enter your last name'; }
-    // } else if (!this.profileForm.value.phone) {
-    //   this.warnText = '';
-    // }
+    this.checkPhone();
   }
 
   public onAdd(): void {
     this.validationForm();
-    this.profileForm.value.id = ++this.profileForm.value.id;
-    this.profileForm.value.endDate = moment(this.profileForm.value.endDate).format('DD/MM/YY');
-    const owner = new Owner(
-      this.profileForm.value.firstName,
-      this.profileForm.value.lastName,
-      this.profileForm.value.endDate,
-      this.profileForm.value.profits,
-      this.profileForm.value.losses,
-      this.changeFormatPhone(this.profileForm.value.phone),
-      this.profileForm.value.id,
+    if (this.formValid) {
+      this.profileForm.value.id = ++this.profileForm.value.id;
+      const owner = new Owner(
+        this.profileForm.value.firstName,
+        this.profileForm.value.lastName,
+        this.profileForm.value.endDate,
+        this.profileForm.value.profits,
+        this.profileForm.value.losses,
+        this.profileForm.value.phone,
+        this.profileForm.value.id,
       );
-    this.addNewOwner.emit(owner);
-    // this.profileForm.reset();
-    // this.onNoClick();
+      this.addNewOwner.emit(owner);
+      this.profileForm.reset();
+      this.onNoClick();
+    }
     }
 
   onNoClick(): void {

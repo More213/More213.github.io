@@ -14,7 +14,7 @@
           {{owner.firstName}}  {{owner.lastName}}
         </td>
         <td>
-          {{owner.endDate}}
+          {{owner.endDate | mask: 'd0/M0/00'}}
         </td>
         <td>
           &#x24;{{owner.profits}}
@@ -23,7 +23,7 @@
           &#36;{{owner.losses}}
         </td>
         <td>
-          {{owner.phone}}
+          {{owner.phone | mask: '+0(000)000-00-00'}}
         </td>
       </tr>
 

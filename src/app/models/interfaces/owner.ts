@@ -3,9 +3,9 @@ export class Owner {
     public firstName: string,
     public lastName: string,
     public endDate: string,
-    public profits: string,
-    public losses: string,
-    public phone: string,
+    public profits: number,
+    public losses: number,
+    public phone: number,
     public id: number,
   ) { }
 }

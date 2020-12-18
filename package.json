@@ -30,6 +30,7 @@
     "bootstrap": "^4.5.3",
     "bootstrap-scss": "^4.5.3",
     "moment": "^2.29.1",
+    "ngx-mask": "^11.1.4",
     "rxjs": "~6.6.0",
     "sass": "^1.27.0",
     "tslib": "^2.0.0",

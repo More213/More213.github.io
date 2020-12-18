@@ -1,79 +1,115 @@
 <form [formGroup]="profileForm" class="example-form">
   <div class="row">
-    <mat-form-field class="example-full-width">
-      <mat-label class="" for="owner-firstName">First Name</mat-label>
-      <input
-        matInput
-        type="text"
-        class="form-control"
-        id="owner-firstName"
-        formControlName="firstName"
-        placeholder="First Name"
+    <div class="colm">
+      <mat-form-field class="example-full-width">
+        <mat-label class="" for="owner-firstName">First Name*</mat-label>
+        <input
+          matInput
+          type="text"
+          class="form-control"
+          id="owner-firstName"
+          formControlName="firstName"
+          placeholder="First Name"
         />
-    </mat-form-field >
-    <mat-form-field class="example-full-width">
-      <mat-label for="owner-lastName">Last Name</mat-label>
-      <input
-        matInput
-        type="text"
-        class="form-control"
-        id="owner-lastName"
-        formControlName="lastName"
-        placeholder="Last Name"
-        />
-    </mat-form-field>
+      </mat-form-field >
+      <div class="warn-text" *ngIf="warnText.firstName">
+        <p>{{warnText.firstName}}</p>
+      </div>
+    </div>
 
-    <mat-form-field class="example-full-width" color="accent" appearance="fill">
-      <mat-label for="owner-endDate">Choose a date</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        class="form-control"
-        id="owner-endDate"
-        formControlName="endDate"
-        placeholder="Choose a date"
-        [disabled]="true">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker disabled="false"></mat-datepicker>
-    </mat-form-field>
+    <div class="colm">
+      <mat-form-field class="example-full-width">
+        <mat-label for="owner-lastName">Last Name*</mat-label>
+        <input
+          matInput
+          type="text"
+          class="form-control"
+          id="owner-lastName"
+          formControlName="lastName"
+          placeholder="Last Name"
+        />
+      </mat-form-field>
+      <div class="warn-text" *ngIf="warnText.lastName">
+        <p>{{warnText.lastName}}</p>
+      </div>
+    </div>
 
-    <mat-form-field class="example-full-width">
-      <mat-label for="owner-profits">Profits</mat-label>
-      <input
-        matInput
-        type="text"
-        class="form-control"
-        id="owner-profits"
-        formControlName="profits"
-        placeholder="Profits"
+    <div class="colm">
+      <mat-form-field class="example-full-width" color="accent" appearance="fill">
+        <mat-label for="owner-endDate">Choose a date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          class="form-control"
+          id="owner-endDate"
+          formControlName="endDate"
+          placeholder="Choose a date"
+          [disabled]="true">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <div class="warn-text" *ngIf="warnText.endDate">
+        <p>{{warnText.endDate}}</p>
+      </div>
+    </div>
+
+    <div class="colm">
+      <mat-form-field class="example-full-width">
+        <mat-label for="owner-profits">Profits*</mat-label>
+        <input
+          matInput
+          type="number"
+          mask="separator"
+          class="form-control"
+          id="owner-profits"
+          formControlName="profits"
+          placeholder="Profits"
         />
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <mat-label for="owner-losses">Losses</mat-label>
-      <input
-        matInput
-        type="text"
-        class="form-control"
-        id="owner-losses"
-        formControlName="losses"
-        placeholder="Losses"
+      </mat-form-field>
+      <div class="warn-text" *ngIf="warnText.profits">
+        <p>{{warnText.profits}}</p>
+      </div>
+    </div>
+
+    <div class="colm">
+      <mat-form-field class="example-full-width">
+        <mat-label for="owner-losses">Losses*</mat-label>
+        <input
+          matInput
+          type='number'
+          mask="separator"
+          class="form-control"
+          id="owner-losses"
+          formControlName="losses"
+          placeholder="Losses"
         />
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <mat-label for="owner-phone">Phone</mat-label>
-      <input
-        matInput
-        type="tel"
-        class="form-control"
-        id="owner-phone"
-        formControlName="phone"
-        placeholder="8(000)000-00-00"
-        />
-    </mat-form-field>
+      </mat-form-field>
+      <div class="warn-text" *ngIf="warnText.losses">
+        <p>{{warnText.losses}}</p>
+      </div>
+    </div>
+
+    <div class="colm">
+      <mat-form-field class="example-full-width">
+        <mat-label for="owner-phone">Phone*</mat-label>
+        <input
+          matInput
+          type="tel"
+          class="form-control"
+          id="owner-phone"
+          formControlName="phone"
+          #input
+          prefix="+7"
+          mask="0(000)000-00-00"
+          placeholder="+7(000)000-00-00">
+        <mat-hint align="end">{{input.value.toString()?.length || 0}}/16</mat-hint>
+      </mat-form-field>
+      <div class="warn-text" *ngIf="warnText.phone">
+        <p>{{warnText.phone}}</p>
+      </div>
+    </div>
   </div>
-  <div class="warn-text" *ngIf="warnText">
-    <p>{{warnText}}</p>
-  </div>
+
   <div mat-dialog-actions>
     <button mat-raised-button type="button" class="btn btn-success" (click)="onAdd()">Add</button>
   </div>

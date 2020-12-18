@@ -29,7 +29,11 @@ import { UnderConstructionComponent } from './pages/under-construction/under-con
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {MaterialAppModule} from './ngmaterial.module';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { NgxMaskModule, IConfig} from 'ngx-mask';
 
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -59,6 +63,7 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([AppEffects]),
     StoreRouterConnectingModule.forRoot(),
+    NgxMaskModule.forRoot(maskConfig),
     BrowserAnimationsModule,
     MaterialAppModule,
   ],

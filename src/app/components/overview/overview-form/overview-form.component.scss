@@ -22,6 +22,10 @@
       width: 250px;
       margin: 0 3px;
     }
+    .colm{
+      display: flex;
+      flex-direction: column;
+    }
   }
   button {
     color: #FFFFFF;
@@ -31,4 +35,16 @@
     margin-left: auto;
     margin-right: auto;
   }
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.warn-text>p {
+  font-size: 12px;
+  color: #ff0000;
+  text-align: start;
 }
