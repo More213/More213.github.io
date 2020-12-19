@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Owner } from '../../../models/interfaces/owner';
 
 @Component({
@@ -20,7 +20,4 @@ export const ownersArray: Owner[] = [
   new Owner('Kathryn', 'Murphy', '15/09/20', '100', '100', '79000000000', 4),
   new Owner('Cameron', 'Williamson', '15/09/20', '100', '100', '79000000000', 5),
   new Owner('Kristin', 'Watson', '15/09/20', '100', '100', '79000000000', 6),
-  // new Owner('Eleanor', 'Pena', '15/09/20', '1000', '100', '99999999',7),
-  // new Owner('Guy', 'Hawkins', '15/09/20', '1000', '100', '99999999',8),
-
 ];

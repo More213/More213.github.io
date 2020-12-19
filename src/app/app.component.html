@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<mat-drawer-container *ngIf="!itDevice">
+  <mat-drawer #drawer mode="side" class="menu-bar">
+    <app-menu-bar></app-menu-bar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <button mat-fab (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+<div *ngIf="itDevice" class="body-container">
+  <app-menu-bar></app-menu-bar>
+  <router-outlet></router-outlet>
+</div>
